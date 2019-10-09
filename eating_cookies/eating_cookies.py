@@ -7,31 +7,26 @@ cache = {}
 # The cache parameter is here for if you want to implement
 # a solution that is more efficient than the naive 
 # recursive solution
-possibilities = 0
 def eating_cookies(n, cache=None):
-    global possibilities
-
-    # Base case happens when n < 0
-    if n < 1:
-        possibilities = 1
-        return possibilities
-
-    elif n >= 1 and n <= 3:
-        if n - 1 == 0:
-            possibilities += 1
-        if n - 2 == 0:
-            possibilities += 2
-        if n - 3 == 0:
-            possibilities += 4
-        return possibilities
-    else:
-        eating_cookies(n-1)
-        eating_cookies(n-2)
-        eating_cookies(n-3)
-
+    # 0 cookies can only be eaten 1 way - not at all
+    if n <= 0:
+        return 1
     
+    # One cookie can only be eaten in one way
+    if n == 1:
+        return 1
 
-    return possibilities
+    # Two cookies can be eaten in two ways
+    if n == 2:
+        return 2
+
+    # Three cookies can be eaten in four ways ([1, 2], [2,1], [1, 1, 1], [3])
+    if n == 3:
+        return 4
+
+    else:
+        return eating_cookies(n-1) + eating_cookies(n-2) + eating_cookies(n-3)
+
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
