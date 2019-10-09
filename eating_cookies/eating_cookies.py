@@ -13,15 +13,15 @@ def eating_cookies(n, cache=None):
         return 1
     
     # One cookie can only be eaten in one way
-    if n == 1:
+    elif n == 1:
         return 1
 
     # Two cookies can be eaten in two ways
-    if n == 2:
+    elif n == 2:
         return 2
 
     # Three cookies can be eaten in four ways ([1, 2], [2,1], [1, 1, 1], [3])
-    if n == 3:
+    elif n == 3:
         return 4
 
     else:
